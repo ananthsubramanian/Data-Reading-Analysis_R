@@ -1,0 +1,36 @@
+---
+title: "assignment05_q03"
+author: "Ananth Subramanian"
+date: "February 14, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+Assignment 05 Question 03
+```{r question 03}
+f <- as.data.table(final)
+f1 <- f[,sum(`Amount of children`), by = c("Name","Gender")]
+colnames(f1) <- c("Name", "Gender","Total")
+View(f1)
+f2 <- f1[order(f1$Total, decreasing = TRUE),]
+head(f2,10)
+f3 <- f1[grep("F$",f1$Gender)]
+View(f3)
+top_female_names <- f3
+write.csv(top_female_names, "top_female_names.csv")
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
